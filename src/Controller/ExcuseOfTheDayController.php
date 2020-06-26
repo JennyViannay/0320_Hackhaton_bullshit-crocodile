@@ -28,6 +28,15 @@ class ExcuseOfTheDayController extends AbstractController
     }
 
     /**
+     * @Route("/timer", name="excuse_of_the_day_timer")
+     */
+    public function timeFromNextExcuseOfTheDay(ExcuseOfTheDayRepository $excuseOfTheDayRepository)
+    {
+        $excuseOfTheDay = $excuseOfTheDayRepository->getDescId();
+        return $this->json(['date' => $excuseOfTheDay[0]->getFinishAt()], 200 );
+    }
+
+    /**
      * @Route("/new", name="excuse_of_the_day_new", methods={"GET","POST"})
      */
     public function new(Request $request, BetRepository $betRepository): Response
@@ -43,9 +52,8 @@ class ExcuseOfTheDayController extends AbstractController
 
             $bets = $betRepository->findBy(['excuse' => $excuseOfTheDay->getExcuse()]);
             foreach($bets as $bet){
-                $bet->setExcuseOfTheDay($excuseOfTheDay);
+                $bet->setIsArchived(true);
                 $excuseOfTheDay->addBet($bet);
-                $excuseOfTheDay->addWinner($bet->getUser());
                 $excuseOfTheDay->setIsActive(true);
                 $entityManager->persist($bet);
             }

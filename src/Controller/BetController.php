@@ -24,62 +24,33 @@ class BetController extends AbstractController
     /**
      * @Route("/", name="bet_history", methods={"GET"})
      */
-    public function index(BetRepository $betRepository, BetService $betService): Response
+    public function index(BetRepository $betRepository, ExcuseOfTheDayRepository $excuseOfTheDayRepository): Response
     {
-        $interval = new DateTime('now - 24 hours');
         $isWinner = false;
-        $userBets = $this->getUser()->getBets();
-        if ($this->getUser()->getLastBet() != null) {
-            $betService->checkUserCanBet($this->getUser());
+        $excuseOfTheDay = $excuseOfTheDayRepository->getDescId();
+        $winnerBets = $excuseOfTheDay[0]->getBets();
+        foreach($winnerBets as $bet){
+            if($bet->getUser() == $this->getUser()) { $isWinner = true; }
         }
-        if (!empty($userBets)) {
-            $betService->archiveBet($userBets);
-            $betOfTheDay = $betService->getBetOfTheDay();
-            if (!empty($betOfTheDay)) {
-                if ($betOfTheDay->getCreatedAt() < $interval) {
-                    $betOfTheDay->setIsActive(false);
-                    $entityManager = $this->getDoctrine()->getManager();
-                    $entityManager->persist($betOfTheDay);
-                    $entityManager->flush();
-                    return $this->render('bet/index.html.twig', [
-                        'bets' => $betRepository->findBy(['user' => $this->getUser()]),
-                        'isWinner' => $isWinner ? $isWinner : null,
-                        'ofTheDay' => $betOfTheDay
-                    ]);
-                } else {
-                    $winners = $betOfTheDay->getWinners();
-                    foreach ($winners as $winner) {
-                        if ($this->getUser()->getId() === $winner->getId()) {
-                            $isWinner = true;
-                        }
-                    }
-                    return $this->render('bet/index.html.twig', [
-                        'bets' => $betRepository->findBy(['user' => $this->getUser()]),
-                        'isWinner' => $isWinner ? $isWinner : null,
-                        'winners' => $winners ? $winners : '',
-                        'ofTheDay' => $betOfTheDay
-                    ]);
-                }
-            }
-            return $this->render('bet/index.html.twig', [
-                'bets' => $betRepository->findBy(['user' => $this->getUser()]),
-                'isWinner' => $isWinner ? $isWinner : null,
-                'ofTheDay' => $betOfTheDay
-            ]);
-        }
+       
+        return $this->render('bet/index.html.twig', [
+            'bets' => $betRepository->findBy(['user' => $this->getUser()]),
+            'isWinner' => $isWinner,
+            'ofTheDay' => $excuseOfTheDay[0]
+        ]);
     }
 
     /**
      * @Route("/statistic", name="bet_statistic", methods={"GET"})
      */
-    public function statistic(BetRepository $betRepository, ExcuseOfTheDayRepository $EOTDRepository): Response
+    public function statistic(BetRepository $betRepository, ExcuseOfTheDayRepository $excuseOfTheDayRepository): Response
     {
-        $excuseOfTheDay = $EOTDRepository->findOneBy(['is_active' => true]);
+        $excuseOfTheDay = $excuseOfTheDayRepository->getDescId();
         
         return $this->render('bet/statistic.html.twig', [
             'bets' => array_reverse($betRepository->findAll()),
             'last10bets' => $betRepository->findLastTenBetsPosted(),
-            'ofTheDay' => $excuseOfTheDay ? $excuseOfTheDay : null
+            'ofTheDay' => $excuseOfTheDay[0]
         ]);
     }
 
@@ -88,12 +59,8 @@ class BetController extends AbstractController
      */
     public function new(Request $request, BetService $betService): Response
     {
-        if ($this->getUser()->getLastBet() != null) {
-            $betService->checkUserCanBet($this->getUser());
-        }
-
         if ($this->getUser()->getCanBet() === false) {
-            return $this->redirectToRoute('bet_history');
+            return $this->redirectToRoute('home');
         } else {
             $bet = new Bet();
             $form = $this->createForm(BetType::class, $bet);
@@ -101,12 +68,22 @@ class BetController extends AbstractController
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->getUser()->setLastBet($bet);
+                $this->getUser()->setCanBet(false);
                 $bet->setUser($this->getUser());
-                $bet->setCreatedAt(new DateTime('now'));
-                $bet->setFinishAt(new DateTime('now + 1 day 08:00:00'));
+
+                $now = new DateTime('now');
+                $interval = new DateTime('now 08:59:00');
+                $bet->setCreatedAt($now);
+
+                if($now > $interval){
+                    $bet->setFinishAt(new DateTime('now + 1 day 08:59:00'));
+                } else {
+                    $bet->setFinishAt(new DateTime('now 08:59:00'));
+                }
                 $bet->setIsArchived(false);
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($bet);
+                $entityManager->persist($this->getUser());
                 $entityManager->flush();
                 return $this->redirectToRoute('bet_history');
             }

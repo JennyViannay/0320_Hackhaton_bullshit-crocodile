@@ -13,13 +13,16 @@
 
 <body>
     <nav class="text-center">
-        <a class="nav-link" href="{{path('home')}}"><img src="{{asset('assets/images/logoAure.png')}}" alt="logo" width="70px" height="70px"></a>
+        <a href="{{path('excuse_of_the_day_timer')}}" class="nav-link js-timer" id="demo"></a>
+        <a class="nav-link" href="{{path('home')}}"><img src="{{asset('assets/images/logoAure.png')}}" alt="logo"
+                width="70px" height="70px"></a>
     </nav>
     {% block body %}{% endblock %}
     <div class="mb-5"></div>
     <nav class="navbar navbar-dark bg-dark fixed-bottom">
         {% if app.user %}
-        <a class="nav-link" href="{{path('bet_new')}}"><img src="{{asset('assets/images/logoAure.png')}}" alt="logo" width="37px" height="37px"></a>
+        <a class="nav-link" href="{{path('bet_new')}}"><img src="{{asset('assets/images/logoAure.png')}}" alt="logo"
+                width="37px" height="37px"></a>
         <a class="nav-link" href="{{path('excuse_new')}}"><i class="fas fa-pen"></i></a>
         <a class="nav-link" href="{{path('excuse_list')}}"><i class="fas fa-toilet-paper"></i></a>
         <a class="nav-link" href="{{path('bet_history')}}"><i class="fas fa-robot"></i></i></a>
@@ -38,10 +41,37 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        $('.datepicker').datepicker({
-            format: 'mm/dd/yyyy'
-        });
+        var fromNextExcuseOfTheDay = document.querySelector('a.js-timer')
+        axios.get(fromNextExcuseOfTheDay.href)
+            .then(response => {
+                var countDownDate = new Date(response.data.date);
+                getTimer(countDownDate)
+            }).catch(error => {
+                if (error.response.status === 403) {
+                    window.alert("Erreur !")
+                }
+            })
+
+        getTimer = (countDownDate) => {
+            var x = setInterval(function () {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("demo").innerHTML = 'Next Daily dans ' + hours + "h "
+                    + minutes + "m " + seconds + "s ";
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "EXPIRED";
+                }
+            }, 100)
+        }
     </script>
     {% block javascripts %}{% endblock %}
 </body>

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 <div class="container">
-    {% if isWinner is defined and isWinner == true %}
+    {% if isWinner == true %}
     <div class="row">
         <div class="col-lg-6 col-sm-12 text-center">
             <img src="{{asset('assets/images/logoAure.png')}}" width="200px" height="200px" alt="logo">
@@ -41,7 +41,7 @@
     {% else %}
     <div class="card card-body bg-dark my-2">
         <div class="row">
-            {% if bet.getExcuseOfTheDay == true %}
+            {% if bet.excuse.id == ofTheDay.excuse.id %}
                 <div class="col-12 text-right">
                     <small class="text-red">Labélisée Paracrote gagnante</small><img src="{{asset('assets/images/logoAure.png')}}" alt="logo" class="img-fluid" width="50px">
                 </div>

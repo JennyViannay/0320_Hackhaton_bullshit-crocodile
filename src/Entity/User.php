@@ -85,11 +85,6 @@ class User implements UserInterface
      */
     private $excuses;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=ExcuseOfTheDay::class, inversedBy="winners")
-     */
-    private $excuseOfTheDay;
-
     public function __construct()
     {
         $this->bets = new ArrayCollection();
@@ -325,18 +320,6 @@ class User implements UserInterface
                 $excus->setAuthor(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getExcuseOfTheDay(): ?ExcuseOfTheDay
-    {
-        return $this->excuseOfTheDay;
-    }
-
-    public function setExcuseOfTheDay(?ExcuseOfTheDay $excuseOfTheDay): self
-    {
-        $this->excuseOfTheDay = $excuseOfTheDay;
 
         return $this;
     }

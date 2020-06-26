@@ -25,12 +25,11 @@ class BetService
     public function checkUserCanBet(User $user)
     {
         $lastUserBet = $user->getLastBet();
-        $interval = new DateTime('now + 2 hours');
-        
+        $interval = new DateTime('now');
         if($lastUserBet->getFinishAt() < $interval ){
-            $user->setCanBet(true);
-        } else {
             $user->setCanBet(false);
+        } else {
+            $user->setCanBet(true);
         }
         $this->em->persist($user);
         $this->em->flush();

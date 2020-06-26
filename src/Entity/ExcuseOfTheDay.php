@@ -30,16 +30,6 @@ class ExcuseOfTheDay
     private $created_at;
 
     /**
-     * @ORM\OneToMany(targetEntity=user::class, mappedBy="excuseOfTheDay")
-     */
-    private $winners;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Bet::class, mappedBy="excuseOfTheDay")
-     */
-    private $bet;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $is_active;
@@ -49,10 +39,15 @@ class ExcuseOfTheDay
      */
     private $finish_at;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Bet::class)
+     */
+    private $bets;
+
     public function __construct()
     {
         $this->winners = new ArrayCollection();
-        $this->bet = new ArrayCollection();
+        $this->bets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,68 +79,6 @@ class ExcuseOfTheDay
         return $this;
     }
 
-    /**
-     * @return Collection|user[]
-     */
-    public function getWinners(): Collection
-    {
-        return $this->winners;
-    }
-
-    public function addWinner(user $winner): self
-    {
-        if (!$this->winners->contains($winner)) {
-            $this->winners[] = $winner;
-            $winner->setExcuseOfTheDay($this);
-        }
-
-        return $this;
-    }
-
-    public function removeWinner(user $winner): self
-    {
-        if ($this->winners->contains($winner)) {
-            $this->winners->removeElement($winner);
-            // set the owning side to null (unless already changed)
-            if ($winner->getExcuseOfTheDay() === $this) {
-                $winner->setExcuseOfTheDay(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Bet[]
-     */
-    public function getBet(): Collection
-    {
-        return $this->bet;
-    }
-
-    public function addBet(Bet $bet): self
-    {
-        if (!$this->bet->contains($bet)) {
-            $this->bet[] = $bet;
-            $bet->setExcuseOfTheDay($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBet(Bet $bet): self
-    {
-        if ($this->bet->contains($bet)) {
-            $this->bet->removeElement($bet);
-            // set the owning side to null (unless already changed)
-            if ($bet->getExcuseOfTheDay() === $this) {
-                $bet->setExcuseOfTheDay(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getIsActive(): ?bool
     {
         return $this->is_active;
@@ -166,6 +99,32 @@ class ExcuseOfTheDay
     public function setFinishAt(\DateTimeInterface $finish_at): self
     {
         $this->finish_at = $finish_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Bet[]
+     */
+    public function getBets(): Collection
+    {
+        return $this->bets;
+    }
+
+    public function addBet(Bet $bet): self
+    {
+        if (!$this->bets->contains($bet)) {
+            $this->bets[] = $bet;
+        }
+
+        return $this;
+    }
+
+    public function removeBet(Bet $bet): self
+    {
+        if ($this->bets->contains($bet)) {
+            $this->bets->removeElement($bet);
+        }
 
         return $this;
     }

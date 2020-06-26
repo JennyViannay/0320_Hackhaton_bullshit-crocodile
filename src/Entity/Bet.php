@@ -44,10 +44,10 @@ class Bet
      */
     private $is_archived;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=ExcuseOfTheDay::class, inversedBy="bet")
-     */
-    private $excuseOfTheDay;
+    public function __toString()
+    {
+        return $this->excuse->getText();
+    }
 
     public function getId(): ?int
     {
@@ -110,18 +110,6 @@ class Bet
     public function setIsArchived(bool $is_archived): self
     {
         $this->is_archived = $is_archived;
-
-        return $this;
-    }
-
-    public function getExcuseOfTheDay(): ?ExcuseOfTheDay
-    {
-        return $this->excuseOfTheDay;
-    }
-
-    public function setExcuseOfTheDay(?ExcuseOfTheDay $excuseOfTheDay): self
-    {
-        $this->excuseOfTheDay = $excuseOfTheDay;
 
         return $this;
     }

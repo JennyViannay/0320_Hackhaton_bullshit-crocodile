@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\BetRepository;
+use App\Repository\ExcuseOfTheDayRepository;
 use App\Repository\ExcuseRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,8 +13,9 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(ExcuseRepository $excuseRepository, BetRepository $betRepository)
+    public function index(ExcuseRepository $excuseRepository, BetRepository $betRepository, ExcuseOfTheDayRepository $excuseOfTheDayRepository)
     {
+        $excuseOfTheDay = $excuseOfTheDayRepository->getDescId();
         $excuses = $excuseRepository->findLastTenExcusesPosted();
         $bets = $betRepository->findLastTenBetsPosted();
 
@@ -29,7 +31,8 @@ class HomeController extends AbstractController
         }
         
         return $this->render('home/index.html.twig', [
-            'data' => $data
+            'data' => $data,
+            'ofTheDay' => $excuseOfTheDay[0]
         ]);
     }
 }

@@ -134,37 +134,6 @@ class Excuse
     }
 
     /**
-     * @return Collection|ExcuseOfTheDay[]
-     */
-    public function getExcuseOfTheDays(): Collection
-    {
-        return $this->excuseOfTheDays;
-    }
-
-    public function addExcuseOfTheDay(ExcuseOfTheDay $excuseOfTheDay): self
-    {
-        if (!$this->excuseOfTheDays->contains($excuseOfTheDay)) {
-            $this->excuseOfTheDays[] = $excuseOfTheDay;
-            $excuseOfTheDay->setExcuse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeExcuseOfTheDay(ExcuseOfTheDay $excuseOfTheDay): self
-    {
-        if ($this->excuseOfTheDays->contains($excuseOfTheDay)) {
-            $this->excuseOfTheDays->removeElement($excuseOfTheDay);
-            // set the owning side to null (unless already changed)
-            if ($excuseOfTheDay->getExcuse() === $this) {
-                $excuseOfTheDay->setExcuse(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|ExcuseLike[]
      */
     public function getLikes(): Collection

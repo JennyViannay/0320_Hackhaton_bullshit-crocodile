@@ -19,6 +19,16 @@ class ExcuseOfTheDayRepository extends ServiceEntityRepository
         parent::__construct($registry, ExcuseOfTheDay::class);
     }
 
+    public function getDescId()
+    {
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.id', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return ExcuseOfTheDay[] Returns an array of ExcuseOfTheDay objects
     //  */

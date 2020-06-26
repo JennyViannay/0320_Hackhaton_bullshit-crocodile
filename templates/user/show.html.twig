@@ -14,12 +14,14 @@
             <p><small class="text-blue">{{user.email}}</small></p>
             <p>Bio : <br><small class="text-blue">{{user.comment}}</small></p>
             <p>Né.e le <br> <small class="text-blue">{{user.birthDate|date('d/m/Y')}}</small></p>
+            {% if app.user == user %}
             <div class="col-12 text-center">
                 <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-sm btn-green my-2">Modifier le
                     profil</a>
                 {{ include('user/_delete_form.html.twig') }}
                 <img src="{{asset('assets/images/logoAure.png')}}" alt="logo" class="img-fluid" width="150px">
             </div>
+            {% endif %}
         </div>
         <div class="col-3"></div>
     </div>
