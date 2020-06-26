@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container">
+    {% if isWinner is defined and isWinner == true %}
+    <div class="row">
+        <div class="col-lg-6 col-sm-12 text-center">
+            <img src="{{asset('assets/images/logoAure.png')}}" width="200px" height="200px" alt="logo">
+            <audio autoplay controls>
+                <source src="{{asset('assets/audio/winning.mp3')}}" type="audio/mp3">
+            </audio>
+        </div>
+        <div class="col-lg-6 col-sm-12 col-md-12 text-center">
+            <img src="https://media1.giphy.com/media/kUEojfKNgSH0gnWyhK/giphy.gif" class="img-fluid" alt="success">
+        </div>
+        <div class="col-12 text-center">
+                <h1>{{ofTheDay.excuse}}</h1>
+        </div>
+    </div>
+    {% endif %}
+    <div class="text-right">
+        {% if app.user.canBet == true %}
+        <a href="{{ path('bet_new') }}" class="btn btn-sm btn-green">Paradealer now !</a>
+        {% endif %}
+        <a href="{{path('bet_statistic')}}" class="btn btn-sm btn-blue">Stats</a>
+    </div>
+    {% for bet in bets|reverse %}
+    {% if bet.isArchived == false %}
+    <div class="card card-body bg-dark my-2">
+        <div class="row">
+            <div class="col-10">
+                <p>{{bet.excuse}}</p>
+                <p class="text-red"><small>Se termine le {{bet.finishAt|date('d-m-Y')}}</small></p>
+                <p class="text-blue-dark"><small>Parié le {{ bet.createdAt ? bet.createdAt|date('d-m-Y') : '' }}</small>
+                </p>
+            </div>
+            <div class="col-2">
+                <p>{{ include('bet/_delete_form.html.twig') }}</p>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="card card-body bg-dark my-2">
+        <div class="row">
+            {% if bet.getExcuseOfTheDay == true %}
+                <div class="col-12 text-right">
+                    <small class="text-red">Labélisée Paracrote gagnante</small><img src="{{asset('assets/images/logoAure.png')}}" alt="logo" class="img-fluid" width="50px">
+                </div>
+                <hr>
+            {% endif %}
+            <div class="col-12">
+                <div class="title"></div>
+                <p>{{bet.excuse}}</p>
+                <p class="text-blue-dark"><small>S'est terminé le {{bet.finishAt|date('d-m-Y')}}</small></p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

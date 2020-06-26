@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="bg-tapis"></div>
+<div class="container after_bgContainer text-center">
+    <img src="{{app.user.avatar}}" class="avatar" alt="avatar">
+    {{ include('user/_form.html.twig', {'button_label': 'Mettre à jour'}) }}    
+    {{ include('user/_delete_form.html.twig') }}
+</div>
+{% endblock %}
+
+{% block javascripts %}
+
+<script>
+    const avatarInput = document.querySelector('.avatar-input')
+    const avatarImage = document.querySelector('.avatar')
+    avatarInput.addEventListener('change', e => {
+        console.log(e.target.value)
+        avatarImage.setAttribute("src", e.target.value)
+    })
+</script>
+{% endblock %}

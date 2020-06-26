@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    {% for excuse in excuses|reverse %}
+    <div class="card card-body bg-dark my-2">
+        <div class="row">
+            <div class="col-2">
+                {% if excuse.author.avatar is defined %}
+                <img src="{{excuse.author.avatar}}" alt="avatar" width="50px" height="50px" class="miniature">
+                {% endif %}
+            </div>
+            <div class="col-10">
+                <div class="title"><span class="text-blue">@{{excuse.author}}</span> a écrit cette paracrote 💩 :
+                </div>
+                <p>{{excuse.text}}</p>
+                <p class="text-blue-dark"><small>{{excuse.createdAt|date('d-m-Y')}}</small></p>
+            </div>
+            <div class="col-12 text-right">
+                <a href="{{ path('excuse_like', {'id' : excuse.id }) }}" class="btn btn-sm btn-green js-like">
+                    {% if app.user and excuse.isLikedByUser(app.user) %}
+                    <i class="fas fa-thumbs-up"></i>
+                    {% else %}
+                    <i class="far fa-thumbs-up"></i>
+                    {% endif %}
+                    <span class="js-link-count">{{ excuse.likes | length }}</span>
+                    {% if app.user and excuse.isLikedByUser(app.user) %}
+                    <span class="js-link-label">JE N'AIME PLUS</span>
+                    {% else %}
+                    <span class="js-link-label">J'AIME</span>
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.querySelectorAll('a.js-like').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault()
+                var spanCount = link.querySelector('span.js-link-count')
+                var spanLabel = link.querySelector('span.js-link-label')
+                var icone = link.querySelector('i')
+                axios.get(link.href)
+                .then(response => {
+                    spanCount.textContent = response.data.likes
+                    if(icone.classList.contains('fas')){
+                        icone.classList.replace('fas', 'far')
+                        spanLabel.textContent = "J'AIME"
+                    } else {
+                        icone.classList.replace('far', 'fas')
+                        spanLabel.textContent = "JE N'AIME PLUS"
+                    }
+                }).catch(error => {
+                    if(error.response.status === 403) {
+                        window.alert("Vous ne pouvez pas liker un article si vous n'êtes pas connecté !")
+                    }
+                })
+            })
+        })
+    </script>
+{% endblock %}

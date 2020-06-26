@@ -1,0 +1,7 @@
+<div class="text-center">
+    {{ form_start(form) }}
+    {{ form_widget(form.excuse, { "attr": {"class": "form-control my-2" }})
+    }}
+    <button class="btn btn-sm btn-danger">{{ button_label|default('Parier sur cette excuse !') }}</button>
+    {{ form_end(form) }}
+</div>

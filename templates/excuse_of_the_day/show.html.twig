@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ExcuseOfTheDay{% endblock %}
+
+{% block body %}
+    <h1>ExcuseOfTheDay</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ excuse_of_the_day.id }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ excuse_of_the_day.createdAt ? excuse_of_the_day.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Is_active</th>
+                <td>{{ excuse_of_the_day.isActive ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('excuse_of_the_day_index') }}">back to list</a>
+
+    <a href="{{ path('excuse_of_the_day_edit', {'id': excuse_of_the_day.id}) }}">edit</a>
+
+    {{ include('excuse_of_the_day/_delete_form.html.twig') }}
+{% endblock %}

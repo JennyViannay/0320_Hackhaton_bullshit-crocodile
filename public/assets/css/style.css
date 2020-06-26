@@ -1,0 +1,142 @@
+body {
+    background-color: black;
+    color: #f1f1f1;
+}
+
+.nav-link {
+    color: #2DBFE0;
+    text-shadow: -1px 0 #21EB8B;
+}
+
+.nav-link:hover {
+    color: #21EB8B;
+    text-shadow: -1px 0 #21EB8B;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.miniature{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.text-blue{
+    color : #34DDE0;
+    font-weight: 700;    
+}
+
+.text-blue-dark{
+    color : #2DBFE0;
+    font-weight: 700;    
+}
+
+.text-green{
+    color : #21EB8B;
+    font-weight: 700;    
+}
+
+.text-red{
+    color : #E0439F;
+    font-weight: 700;    
+}
+
+.btn-green {
+    color: #fff;
+    background-color: #23EBBA;
+    border-color: #23EBBA;
+}
+
+.btn-green:hover {
+    color: #fff;
+    font-weight: 700; 
+    background-color: #21EB8B;
+    border-color: #21EB8B;
+}
+
+.btn-red {
+    color: #fff;
+    background-color: #E02D6A;
+    border-color: #E02D6A;
+}
+
+.btn-red:hover {
+    color: #fff;
+    font-weight: 700; 
+    background-color: #E0439F;
+    border-color: #E0439F;
+}
+
+.btn-blue {
+    color: #fff;
+    background-color: #2DBFE0;
+    border-color: #2DBFE0;
+}
+
+.btn-blue:hover {
+    color: #fff;
+    font-weight: 700; 
+    background-color: #34DDE0;
+    border-color: #34DDE0;
+}
+
+@media (max-width: 768px) { 
+    .bg-tapis {
+        min-height: 600px;
+        background-image: url('../images/logoAure.png');
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+
+        /* Full height */
+        height: 100%;
+
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .filActu{
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0, 0.4);
+        color: white;
+        font-weight: bold;
+        border: 3px solid #f1f1f1;
+        position: absolute;
+        top: 125%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        width: 80%;
+        padding: 20px;
+    }
+
+    .after_bgContainer{
+        background-color: rgb(0,0,0); 
+        background-color: rgba(0,0,0, 0.4);
+        color: white;
+        font-weight: bold;
+        border: 3px solid #f1f1f1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        width: 80%;
+        padding: 20px;
+    }
+}
+
+@media (min-width: 992px) {  
+
+}
+ 
+@media (min-width: 1200px) {  
+
+}
+
+    

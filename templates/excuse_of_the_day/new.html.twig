@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ExcuseOfTheDay{% endblock %}
+
+{% block body %}
+    <h1>Create new ExcuseOfTheDay</h1>
+
+    {{ include('excuse_of_the_day/_form.html.twig') }}
+
+    <a href="{{ path('excuse_of_the_day_index') }}">back to list</a>
+{% endblock %}

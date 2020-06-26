@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="text-center my-5">
+        <img src="{{user.avatar}}" class="avatar" alt="avatar">
+    </div>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 text-center">
+            <p><small class="text-blue">{{user.username}}</small> </p>
+            <p><small class="text-blue">{{user.email}}</small></p>
+            <p>Bio : <br><small class="text-blue">{{user.comment}}</small></p>
+            <p>Né.e le <br> <small class="text-blue">{{user.birthDate|date('d/m/Y')}}</small></p>
+            <div class="col-12 text-center">
+                <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-sm btn-green my-2">Modifier le
+                    profil</a>
+                {{ include('user/_delete_form.html.twig') }}
+                <img src="{{asset('assets/images/logoAure.png')}}" alt="logo" class="img-fluid" width="150px">
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+
+{% endblock %}

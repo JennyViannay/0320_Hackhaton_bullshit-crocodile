@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+{{ form_widget(form.username, { "attr": {"class": "form-control my-2", "placeholder": "Username"}})}}
+{{ form_widget(form.email, { "attr": {"class": "form-control my-2", "placeholder": "Email"}})}}
+<label for="comment">Anniversaire :</label>
+{{ form_widget(form.birth_date, { "attr": {"class": "datepicker my-2" }})}}
+<label for="comment">Avatar :</label>
+{{ form_widget(form.avatar, { "attr": {"class": "form-control my-2 avatar-input" }})}}
+<label for="comment">Bio :</label>
+{{ form_widget(form.comment, { "attr": {"class": "form-control my-2"}})}}
+<div class="text-center">
+    <button class="btn btn-sm btn-green my-2">{{ button_label|default('S\'inscrire !') }}</button>
+</div>
+{{ form_end(form) }}

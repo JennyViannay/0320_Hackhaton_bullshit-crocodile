@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Para Croco !{% endblock %}</title>
+    <script src="https://kit.fontawesome.com/12c728ad22.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    {% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+    <nav class="text-center">
+        <a class="nav-link" href="{{path('home')}}"><img src="{{asset('assets/images/logoAure.png')}}" alt="logo" width="70px" height="70px"></a>
+    </nav>
+    {% block body %}{% endblock %}
+    <div class="mb-5"></div>
+    <nav class="navbar navbar-dark bg-dark fixed-bottom">
+        {% if app.user %}
+        <a class="nav-link" href="{{path('bet_new')}}"><img src="{{asset('assets/images/logoAure.png')}}" alt="logo" width="37px" height="37px"></a>
+        <a class="nav-link" href="{{path('excuse_new')}}"><i class="fas fa-pen"></i></a>
+        <a class="nav-link" href="{{path('excuse_list')}}"><i class="fas fa-toilet-paper"></i></a>
+        <a class="nav-link" href="{{path('bet_history')}}"><i class="fas fa-robot"></i></i></a>
+        <a class="nav-link" href="{{path('user_show', {'id': app.user.id})}}"><i class="fas fa-toilet"></i></a>
+        <a class="nav-link" href="{{path('app_logout')}}"><i class="fas fa-sign-out-alt"></i></a>
+        {% else %}
+        <a class="nav-link" href="{{path('app_login')}}"><i class="fas fa-sign-in-alt"></i></a>
+        {% endif %}
+    </nav>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <script>
+        $('.datepicker').datepicker({
+            format: 'mm/dd/yyyy'
+        });
+    </script>
+    {% block javascripts %}{% endblock %}
+</body>
+
+</html>

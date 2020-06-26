@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="bg-tapis"></div>
+<div class="container after_bgContainer">
+    {{ include('bet/_form.html.twig') }}
+    <div class="text-center my-3">
+        <a href="{{path('excuse_new')}}" class="btn btn-sm btn-blue">Proposer une excuse frère !</a>
+    </div>
+</div>
+
+{% endblock %}

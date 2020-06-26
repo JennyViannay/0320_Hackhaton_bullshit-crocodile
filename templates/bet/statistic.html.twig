@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mb-5">
+    {% if ofTheDay is not null %}
+        <div class="jumbotron bg-dark">
+            <h1>💩 Paracrote of the day !</h1>
+            <div class="row">
+                <div class="col-12">
+                    <p>{{ofTheDay.excuse}}</p>
+                    <p>
+                        Winners : <br>
+                        {% for winner in ofTheDay.winners %}
+                        <p><span class="text-blue">@{{winner}}</span></p>
+                        {% endfor %}
+                    </p> 
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <div class="jumbotron bg-dark">
+        <h1>Derniers Paradeals :</h1>
+        {% for bet in last10bets %}
+        <div class="row mt-5">
+            <div class="col-2">
+                <img src="{{bet.user.avatar}}" alt="avatar" width="50px" height="50px" class="miniature">
+            </div>
+            <div class="col-10">
+                <div class="title"><span class="text-green">@{{bet.user}}</span> à paradealé : </div>
+                <p>{{bet.excuse}}</p>
+                <p class="text-blue-dark"><small>à {{bet.createdAt|date('h:m:s')}}</small></p>
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

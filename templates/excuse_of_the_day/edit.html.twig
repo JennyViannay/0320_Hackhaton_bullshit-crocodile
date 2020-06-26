@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ExcuseOfTheDay{% endblock %}
+
+{% block body %}
+    <h1>Edit ExcuseOfTheDay</h1>
+
+    {{ include('excuse_of_the_day/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('excuse_of_the_day_index') }}">back to list</a>
+
+    {{ include('excuse_of_the_day/_delete_form.html.twig') }}
+{% endblock %}
