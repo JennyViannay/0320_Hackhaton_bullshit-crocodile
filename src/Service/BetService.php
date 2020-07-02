@@ -26,22 +26,30 @@ class BetService
     {
         $lastUserBet = $user->getLastBet();
         $interval = new DateTime('now');
-        if($lastUserBet->getFinishAt() < $interval ){
-            $user->setCanBet(false);
+
+        if(empty($lastUserBet)){
+            return true;
         } else {
-            $user->setCanBet(true);
+            if($lastUserBet->getFinishAt() > $interval ){
+                $user->setCanBet(false);
+                $this->em->persist($user);
+            } else {
+                $user->setCanBet(true);
+                $this->em->persist($user);
+            }
+            $this->em->flush();
         }
-        $this->em->persist($user);
-        $this->em->flush();
     }
 
-    public function archiveBet($bets)
+    public function archiveBetsUserAfter24h(User $user)
     {
-        foreach($bets as $bet){
-            if($bet->getFinishAt() < new DateTime('now')){
-                $bet->setIsArchived(true);
-            }
-            $this->em->persist($bet);
+        $betsUser = $user->getBets();
+        $interval = new DateTime('now');
+        foreach ($betsUser as $bet) {
+           if($bet->getFinishAt() < $interval){
+               $bet->setIsArchived(true);
+               $this->em->persist($bet);
+           }
         }
         $this->em->flush();
     }

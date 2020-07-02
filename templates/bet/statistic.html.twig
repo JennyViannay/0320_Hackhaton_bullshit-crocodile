@@ -28,7 +28,7 @@
             <div class="col-10">
                 <div class="title"><a href="{{ path('user_show', {'id': bet.user.id}) }}"><span class="text-green">@{{bet.user}}</span></a> à paradealé : </div>
                 <p>{{bet.excuse}}</p>
-                <p class="text-blue-dark"><small>à {{bet.createdAt|date('h:m:s')}}</small></p>
+                <p class="text-blue-dark"><small>le {{bet.createdAt|format_datetime('short')}}</small></p>
             </div>
         </div>
         <hr>

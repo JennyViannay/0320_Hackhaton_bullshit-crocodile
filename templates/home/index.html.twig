@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{% include "timer.html.twig" %}
 <div class="container">
     {% if ofTheDay is not null %}
     <div class="jumbotron bg-dark">
@@ -34,7 +35,7 @@
                      a posté une nouvelle paracrote 💩 :
                 </div>
                 <p>{{item.text}}</p>
-                <p class="text-blue-dark"><small>{{item.createdAt|date('d-m-Y')}}</small></p>
+                <p class="text-blue-dark"><small>le {{ item.createdAt|format_datetime('short') }}</small></p>
             </div>
         </div>
     </div>
@@ -50,7 +51,7 @@
                     a paradealé : 
                 </div>
                 <p>{{item.excuse}}</p>
-                <p class="text-blue-dark"><small>à {{item.createdAt|date('h:m:s')}}</small></p>
+                <p class="text-blue-dark"><small>le {{ item.createdAt|format_datetime('short') }}</small></p>
             </div>
         </div>
     </div>

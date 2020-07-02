@@ -23,7 +23,7 @@
         {% endif %}
         <a href="{{path('bet_statistic')}}" class="btn btn-sm btn-blue">Stats</a>
     </div>
-    {% for bet in bets|reverse %}
+    {% for bet in bets %}
     {% if bet.isArchived == false %}
     <div class="card card-body bg-dark my-2">
         <div class="row">

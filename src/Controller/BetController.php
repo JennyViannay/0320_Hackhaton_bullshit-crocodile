@@ -24,19 +24,23 @@ class BetController extends AbstractController
     /**
      * @Route("/", name="bet_history", methods={"GET"})
      */
-    public function index(BetRepository $betRepository, ExcuseOfTheDayRepository $excuseOfTheDayRepository): Response
+    public function index(BetRepository $betRepository, ExcuseOfTheDayRepository $excuseOfTheDayRepository, BetService $betService): Response
     {
         $isWinner = false;
         $excuseOfTheDay = $excuseOfTheDayRepository->getDescId();
-        $winnerBets = $excuseOfTheDay[0]->getBets();
-        foreach($winnerBets as $bet){
-            if($bet->getUser() == $this->getUser()) { $isWinner = true; }
+        if(!empty($excuseOfTheDay)){
+            $winnerBets = $excuseOfTheDay[0]->getBets();
+            foreach($winnerBets as $bet){
+                if($bet->getUser() == $this->getUser()) { $isWinner = true; }
+            }
         }
+
+        $betService->archiveBetsUserAfter24h($this->getUser());
        
         return $this->render('bet/index.html.twig', [
-            'bets' => $betRepository->findBy(['user' => $this->getUser()]),
+            'bets' => $this->getUser()->getBets(),
             'isWinner' => $isWinner,
-            'ofTheDay' => $excuseOfTheDay[0]
+            'ofTheDay' => $excuseOfTheDay ? $excuseOfTheDay[0] : null
         ]);
     }
 
@@ -50,7 +54,7 @@ class BetController extends AbstractController
         return $this->render('bet/statistic.html.twig', [
             'bets' => array_reverse($betRepository->findAll()),
             'last10bets' => $betRepository->findLastTenBetsPosted(),
-            'ofTheDay' => $excuseOfTheDay[0]
+            'ofTheDay' => $excuseOfTheDay ? $excuseOfTheDay[0] : null
         ]);
     }
 

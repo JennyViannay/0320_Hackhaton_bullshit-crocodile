@@ -49,7 +49,7 @@ class ExcuseOfTheDayController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $excuseOfTheDay->setCreatedAt(new DateTime('now'));
             $excuseOfTheDay->setFinishAt(new DateTime('now + 1 day 09:00:00'));
-
+            $excuseOfTheDay->setIsActive(true);
             $bets = $betRepository->findBy(['excuse' => $excuseOfTheDay->getExcuse()]);
             foreach($bets as $bet){
                 $bet->setIsArchived(true);
