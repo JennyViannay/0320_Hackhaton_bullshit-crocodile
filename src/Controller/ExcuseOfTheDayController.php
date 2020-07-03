@@ -39,9 +39,14 @@ class ExcuseOfTheDayController extends AbstractController
     /**
      * @Route("/new", name="excuse_of_the_day_new", methods={"GET","POST"})
      */
-    public function new(Request $request, BetRepository $betRepository): Response
+    public function new(Request $request, BetRepository $betRepository, ExcuseOfTheDayRepository $excuseOfTheDayRepository): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
+        
+        $lastExcuseOfTheDay = $excuseOfTheDayRepository->getDescId();
+        $lastExcuseOfTheDay[0]->setIsActive(false);
+        $entityManager->persist($lastExcuseOfTheDay[0]);
+        
         $excuseOfTheDay = new ExcuseOfTheDay();
         $form = $this->createForm(ExcuseOfTheDayType::class, $excuseOfTheDay);
         $form->handleRequest($request);
@@ -50,11 +55,17 @@ class ExcuseOfTheDayController extends AbstractController
             $excuseOfTheDay->setCreatedAt(new DateTime('now'));
             $excuseOfTheDay->setFinishAt(new DateTime('now + 1 day 09:00:00'));
             $excuseOfTheDay->setIsActive(true);
+            
             $bets = $betRepository->findBy(['excuse' => $excuseOfTheDay->getExcuse()]);
             foreach($bets as $bet){
-                $bet->setIsArchived(true);
                 $excuseOfTheDay->addBet($bet);
                 $excuseOfTheDay->setIsActive(true);
+                $entityManager->persist($bet);
+            }
+
+            $oldBets = $betRepository->findAll();
+            foreach($oldBets as $bet){
+                $bet->setIsArchived(true);
                 $entityManager->persist($bet);
             }
 
