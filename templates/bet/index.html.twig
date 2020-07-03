@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
+{% block title %}Mes Paradeals - ParaCroco{% endblock %}
 {% block body %}
 <div class="container">
-    {% if isWinner == true %}
+    {# {% if isWinner == true %}
     <div class="row">
         <div class="col-lg-6 col-sm-12 text-center">
             <img src="{{asset('assets/images/logoAure.png')}}" width="200px" height="200px" alt="logo">
@@ -16,7 +17,7 @@
                 <h1>{{ofTheDay.excuse}}</h1>
         </div>
     </div>
-    {% endif %}
+    {% endif %} #}
     <div class="text-right">
         {% if app.user.canBet == true %}
         <a href="{{ path('bet_new') }}" class="btn btn-sm btn-green">Paradealer now !</a>
