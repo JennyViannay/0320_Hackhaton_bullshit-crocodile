@@ -4,6 +4,9 @@
 <div class="container">
     {% for excuse in excuses|reverse %}
     <div class="card card-body bg-dark my-2">
+        <div class="text-right">
+            💩 
+        </div>
         <div class="row">
             <div class="col-2">
                 {% if excuse.author.avatar is defined %}
@@ -11,7 +14,7 @@
                 {% endif %}
             </div>
             <div class="col-10">
-                <div class="title"><span class="text-blue">@{{excuse.author}}</span> a écrit cette paracrote 💩 :
+                <div class="title"><span class="text-blue">@{{excuse.author}}</span> a écrit cette paracrote :
                 </div>
                 <p>{{excuse.text}}</p>
                 <p class="text-blue-dark"><small>{{excuse.createdAt|date('d-m-Y')}}</small></p>

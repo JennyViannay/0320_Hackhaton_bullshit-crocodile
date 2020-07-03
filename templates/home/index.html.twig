@@ -12,7 +12,8 @@
                 <p>
                     Winners : <br>
                     {% for bet in ofTheDay.bets %}
-                    <p><a href="{{ path('user_show', {'id': bet.user.id}) }}"><span class="text-blue">@{{bet.user}}</span></a></p>
+                    <p><a href="{{ path('user_show', {'id': bet.user.id}) }}"><span
+                                class="text-blue">@{{bet.user}}</span></a></p>
                     {% endfor %}
                 </p>
             </div>
@@ -26,14 +27,18 @@
     {% for item in data %}
     {% if item.text is defined %}
     <div class="card card-body bg-dark my-2">
+        <div class="text-right">
+                💩 
+        </div>
         <div class="row">
             <div class="col-2">
                 <img src="{{item.author.avatar}}" alt="avatar" width="50px" height="50px" class="miniature">
             </div>
             <div class="col-10">
                 <div class="title">
-                    <a href="{{ path('user_show', {'id': item.author.id}) }}"><span class="text-blue">@{{item.author}}</span></a>
-                     a posté une nouvelle paracrote 💩 :
+                    <a href="{{ path('user_show', {'id': item.author.id}) }}"><span
+                            class="text-blue">@{{item.author}}</span></a>
+                    a posté une nouvelle paracrote :
                 </div>
                 <p>{{item.text}}</p>
                 <p class="text-blue-dark"><small>le {{ item.createdAt|format_datetime('short') }}</small></p>
@@ -42,14 +47,18 @@
     </div>
     {% elseif item.excuse is defined %}
     <div class="card card-body bg-dark my-2">
+        <div class="text-right">
+            🐊
+        </div>
         <div class="row">
             <div class="col-2">
                 <img src="{{item.user.avatar}}" alt="avatar" width="50px" height="50px" class="miniature">
             </div>
             <div class="col-10">
                 <div class="title">
-                    <a href="{{ path('user_show', {'id': item.user.id}) }}"><span class="text-green">@{{item.user}}</span> </a>
-                    a paradealé : 
+                    <a href="{{ path('user_show', {'id': item.user.id}) }}"><span
+                            class="text-green">@{{item.user}}</span> </a>
+                    a paradealé :
                 </div>
                 <p>{{item.excuse}}</p>
                 <p class="text-blue-dark"><small>le {{ item.createdAt|format_datetime('short') }}</small></p>
