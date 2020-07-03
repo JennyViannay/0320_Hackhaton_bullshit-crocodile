@@ -17,7 +17,7 @@
                 <p class="text-blue-dark"><small>{{excuse.createdAt|date('d-m-Y')}}</small></p>
             </div>
             <div class="col-12 text-right">
-                <a href="{{ path('excuse_like', {'id' : excuse.id }) }}" class="btn btn-sm btn-green js-like">
+                <a href="{{ path('excuse_like', {'id' : excuse.id }) }}" class="btn btn-sm btn-blue js-like">
                     {% if app.user and excuse.isLikedByUser(app.user) %}
                     <i class="fas fa-thumbs-up"></i>
                     {% else %}
