@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Paracrotes - ParaCroco{% endblock %}
+{% block title %}Bullshits - CrocoDeal{% endblock %}
 {% block body %}
 <div class="container">
     {% for excuse in excuses|reverse %}
@@ -13,7 +13,7 @@
                 <li>
                     <a href="{{ path('user_show', {'id': excuse.author.id}) }}" class="text-white">
                         <span class="text-blue">@{{excuse.author}}</span>
-                    </a> a paracroté :
+                    </a> a bullshité :
                 </li>
                 {% endif %}
             </ul>

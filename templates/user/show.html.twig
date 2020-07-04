@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Profil - ParaCroco{% endblock %}
+{% block title %}Profil - CrocoDeal{% endblock %}
 {% block body %}
 <div class="container">
     <div class="row">
@@ -30,9 +30,9 @@
     <hr class="bg-red">
     <div class="card-body mt-3 text-center border mb-5">
         <p><small class="text-blue bolder">Bio : </small><br>{{user.comment}}</p>
-        <p><small class="text-blue">🐊 Paradeals : </small> {{user.bets|length}}</p>
-        <p><small class="text-blue">💩 Paracrotes : </small> {{user.excuses|length}}</p>
-        <p><small class="text-blue">🌟 Paradeals gagnants : </small> (coming soon)</p>
+        <p><small class="text-blue">🐊 CrodoDeals : </small> {{user.bets|length}}</p>
+        <p><small class="text-blue">💩 Crotes : </small> {{user.excuses|length}}</p>
+        <p><small class="text-blue">🌟 CrodoDeals gagnants : </small> (coming soon)</p>
     </div>
     <div class="text-center">
         {% if app.user == user %}

@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Mes Paradeals - ParaCroco{% endblock %}
+{% block title %}Mes deals - CrocoDeal{% endblock %}
 {% block body %}
 <div class="container">
     {# {% if isWinner == true %}
@@ -20,7 +20,7 @@
     {% endif %} #}
     <div class="text-right">
         {% if app.user.canBet == true %}
-        <a href="{{ path('bet_new') }}" class="btn btn-sm btn-blue">Paradealer now !</a>
+        <a href="{{ path('bet_new') }}" class="btn btn-sm btn-blue">Dealer now !</a>
         {% endif %}
     </div>
     {% for bet in bets %}
@@ -28,7 +28,7 @@
     <div class="card card-body bg-darkness border rounded my-2">
         <div class="blockquote p-3 text-right bg-blue text-dark bolder rounded">
             <p class="mb-0">" {{bet.excuse}} "</p>
-            <p><small>- paradealé le {{ bet.createdAt ? bet.createdAt|date('d-m-Y') : '' }}</small></p>
+            <p><small>- dealé le {{ bet.createdAt ? bet.createdAt|date('d-m-Y') : '' }}</small></p>
         </div>
         <small class="text-red">- se termine le {{ bet.finishAt ? bet.createdAt|date('d-m-Y') : '' }}</small>
         <div class="text-right">
@@ -38,7 +38,7 @@
     {% else %}
     <div class="card card-body bg-blue border rounded my-2">
         {% if bet.excuse.id == ofTheDay.excuse.id %}
-        <h6 class="text-uppercase"><img src="{{asset('assets/images/logoAure.png')}}" alt="logo" class="img-fluid" width="50px"> Labélisée Paracrote gagnante</h6>
+        <h6 class="text-uppercase text-red bolder bg-darkness rounded"><img src="{{asset('assets/images/logoAure.png')}}" alt="logo" class="img-fluid" width="50px"> - Labélisé CROCODEAL gagnant -</h6>
         <hr>
         {% endif %}
         <div class="blockquote p-3 text-right text-dark bolder rounded">

@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Home - ParaCroco{% endblock %}
+{% block title %}Home - Croco{% endblock %}
 {% block stylesheets %}
 <style>
     .album {
@@ -52,13 +52,13 @@
     {% if ofTheDay is not null %}
     <div class="jumbotron bg-darkness border-blue">
         <div class="text-center mb-5">
-            <h3 class="text-uppercase">Paracrote of the day 💩 </h3>
+            <h3 class="text-uppercase">Bullshit of the day <br> 💩 </h3>
             <div class="blockquote bg-blue border rounded p-3">
                 <p class="mb-0 p-banner">" {{ofTheDay.excuse}} "</p>
                 <footer class="blockquote-footer text-right text-white">par
                     <cite title="Source Title">
                         {% if ofTheDay.excuse.author is empty %}
-                        bot_paradeal
+                        bot_deal
                         {% else %}
                         {{ofTheDay.excuse.author}}
                         {% endif %}
@@ -92,7 +92,7 @@
                 <li>
                     <a href="{{ path('user_show', {'id': item.author.id}) }}" class="text-white">
                         <span class="text-blue">@{{item.author}}</span>
-                    </a> a paracroté :
+                    </a> a bullshité :
                 </li>
             </ul>
         </div>
@@ -112,7 +112,7 @@
                 <li>
                     <a href="{{ path('user_show', {'id': item.user.id}) }}" class="text-white">
                         <span class="text-green">@{{item.user}}</span>
-                    </a> a paradealé :
+                    </a> a dealé :
                 </li>
             </ul>
         </div>
