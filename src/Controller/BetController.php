@@ -45,20 +45,6 @@ class BetController extends AbstractController
     }
 
     /**
-     * @Route("/statistic", name="bet_statistic", methods={"GET"})
-     */
-    public function statistic(BetRepository $betRepository, ExcuseOfTheDayRepository $excuseOfTheDayRepository): Response
-    {
-        $excuseOfTheDay = $excuseOfTheDayRepository->getDescId();
-        
-        return $this->render('bet/statistic.html.twig', [
-            'bets' => array_reverse($betRepository->findAll()),
-            'last10bets' => $betRepository->findLastTenBetsPosted(),
-            'ofTheDay' => $excuseOfTheDay ? $excuseOfTheDay[0] : null
-        ]);
-    }
-
-    /**
      * @Route("/new", name="bet_new", methods={"GET","POST"})
      */
     public function new(Request $request, BetService $betService): Response

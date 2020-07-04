@@ -1,71 +1,76 @@
 {% extends 'base.html.twig' %}
 {% block title %}Home - ParaCroco{% endblock %}
 {% block body %}
-{% include "timer.html.twig" %}
 <div class="container">
     {% if ofTheDay is not null %}
-    <div class="jumbotron bg-dark">
-        <h1>💩 Paracrote of the day !</h1>
-        <div class="row">
-            <div class="col-6">
-                <p>{{ofTheDay.excuse}}</p>
-                <p>
-                    Winners : <br>
-                    {% for bet in ofTheDay.bets %}
-                    <p><a href="{{ path('user_show', {'id': bet.user.id}) }}"><span
-                                class="text-blue">@{{bet.user}}</span></a></p>
-                    {% endfor %}
-                </p>
+    <div class="jumbotron bg-darkness border-blue">
+        <div class="text-center mb-5">
+            <h3 class="text-uppercase">Paracrote of the day 💩 </h3>
+            <div class="blockquote bg-blue border rounded p-3">
+                <p class="mb-0 p-banner">" {{ofTheDay.excuse}} "</p>
+                <footer class="blockquote-footer text-right text-white">par <cite
+                        title="Source Title">{{ofTheDay.excuse.author}}</cite></footer>
             </div>
-            <div class="col-6">
-                <img src="https://media2.giphy.com/media/kUEojfKNgSH0gnWyhK/giphy.gif" class="img-fluid" alt="">
-                <audio src="{{asset('assets/audio/winning.mp3')}}" autoplay></audio>
-            </div>
+            Winners :
+            {% for bet in ofTheDay.bets %}
+            <a href="{{ path('user_show', {'id': bet.user.id}) }}"><span class="text-red">@{{bet.user}}</span></a>
+            {% endfor %}
+            <br>
+            Bravo le(s) bullshiter(s) 👍
+        </div>
+        <div class="text-center">
+            <img src="https://media2.giphy.com/media/kUEojfKNgSH0gnWyhK/giphy.gif" class="img-fluid" alt="">
+            <audio src="{{asset('assets/audio/winning.mp3')}}" autoplay></audio>
         </div>
     </div>
     {% endif %}
     {% for item in data %}
     {% if item.text is defined %}
-    <div class="card card-body bg-dark my-2">
-        <div class="text-right">
-                💩 
+    <div class="card card-body my-2 mt-3 border-blue rounded p-3 bg-darkness">
+        <div class="text-right"> 💩 </div>
+        <div class="card-header">
+            <ul class="card-menu">
+                <li><img src="{{item.author.avatar}}" alt="avatar" class="miniature "></li>
+                <li>
+                    <a href="{{ path('user_show', {'id': item.author.id}) }}" class="text-white">
+                        <span class="text-blue">@{{item.author}}</span>
+                    </a> a paracroté :
+                </li>
+            </ul>
         </div>
-        <div class="row">
-            <div class="col-2">
-                <img src="{{item.author.avatar}}" alt="avatar" width="50px" height="50px" class="miniature">
-            </div>
-            <div class="col-10">
-                <div class="title">
-                    <a href="{{ path('user_show', {'id': item.author.id}) }}"><span
-                            class="text-blue">@{{item.author}}</span></a>
-                    a posté une nouvelle paracrote :
-                </div>
-                <p>{{item.text}}</p>
-                <p class="text-blue-dark"><small>le {{ item.createdAt|format_datetime('short') }}</small></p>
-            </div>
+        <div class="blockquote p-3 text-right bg-blue text-dark bolder p-3 rounded">
+            <p class="mb-0">" {{item.text}} "</p>
+            <footer class="blockquote-footer text-grey mt-4">
+                le <cite title="date">{{ item.createdAt|format_datetime('short') }}</cite>
+            </footer>
         </div>
     </div>
     {% elseif item.excuse is defined %}
-    <div class="card card-body bg-dark my-2">
-        <div class="text-right">
-            🐊
+    <div class="card card-body my-2 mt-3 border-green rounded p-3 bg-darkness">
+        <div class="text-right"> 🐊 </div>
+        <div class="card-header">
+            <ul class="card-menu">
+                <li><img src="{{item.user.avatar}}" alt="avatar" class="miniature "></li>
+                <li>
+                    <a href="{{ path('user_show', {'id': item.user.id}) }}" class="text-white">
+                        <span class="text-green">@{{item.user}}</span>
+                    </a> a paradealé :
+                </li>
+            </ul>
         </div>
-        <div class="row">
-            <div class="col-2">
-                <img src="{{item.user.avatar}}" alt="avatar" width="50px" height="50px" class="miniature">
-            </div>
-            <div class="col-10">
-                <div class="title">
-                    <a href="{{ path('user_show', {'id': item.user.id}) }}"><span
-                            class="text-green">@{{item.user}}</span> </a>
-                    a paradealé :
-                </div>
-                <p>{{item.excuse}}</p>
-                <p class="text-blue-dark"><small>le {{ item.createdAt|format_datetime('short') }}</small></p>
-            </div>
+        <div class="blockquote p-3 text-right bg-green text-dark bolder p-3 rounded">
+            <p class="mb-0">" {{item.excuse}} "</p>
+            <footer class="blockquote-footer text-grey mt-4">
+                le <cite title="date">{{ item.createdAt|format_datetime('short') }}</cite>
+
+            </footer>
         </div>
     </div>
     {% endif %}
     {% endfor %}
 </div>
+{% endblock %}
+
+{% block javascripts %}
+
 {% endblock %}

@@ -1,6 +1,4 @@
-<nav class="text-center">
-    <a href="{{path('excuse_of_the_day_timer')}}" class="nav-link js-timer" id="demo"></a>
-</nav>
+<a href="{{path('excuse_of_the_day_timer')}}" class="nav-link js-timer" id="demo"></a>
 
 {% block javascripts %}
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -25,7 +23,7 @@
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("demo").innerHTML = 'Fermeture des paradeals dans ' + hours + "h "
+            document.getElementById("demo").innerHTML = ' ' + hours + "h "
                 + minutes + "m " + seconds + "s ";
 
             if (distance < 0) {

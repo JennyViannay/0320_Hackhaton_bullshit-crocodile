@@ -1,6 +1,15 @@
 body {
     background-color: black;
     color: #f1f1f1;
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+ul {
+    text-decoration: none
+}
+
+ul li {
+    display: inline-block;
 }
 
 .nav-link {
@@ -14,15 +23,47 @@ body {
 }
 
 .avatar {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
 }
 
 .miniature{
-    width: 40px;
-    height: 40px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
+}
+
+.shadow-element {
+    box-shadow: -4px 4px 1px #21EB8B;
+}
+
+.bg-darkness {
+    background-color: #000;
+}
+
+.bg-blue {
+    background-color: #34DDE0;
+}
+
+.bg-blue-dark {
+    background-color: #0389A8;
+}
+
+.bg-green {
+    background-color: #21EB8B;
+}
+
+.bg-red {
+    background-color: #E0439F;
+}
+
+.border-blue {
+    border-color: #2DBFE0;
+}
+
+.border-green {
+    border-color: #21EB8B;
 }
 
 .text-blue{
@@ -40,9 +81,28 @@ body {
     font-weight: 700;    
 }
 
+.text-darkness{
+    color : #000;
+    font-weight: 700;    
+}
+
 .text-red{
     color : #E0439F;
     font-weight: 700;    
+}
+
+.btn-dark {
+    color: #23EBBA;
+    background-color: #000;
+    border-color: #000;
+}
+
+.circle-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding-left: 15px;
+    padding-top: 15px;
 }
 
 .btn-green {
@@ -71,17 +131,34 @@ body {
     border-color: #E0439F;
 }
 
-.btn-blue {
+.btn-blue:hover {
     color: #fff;
     background-color: #2DBFE0;
     border-color: #2DBFE0;
 }
 
-.btn-blue:hover {
+.btn-blue {
     color: #fff;
     font-weight: 700; 
     background-color: #34DDE0;
     border-color: #34DDE0;
+}
+
+.card-menu {
+    font-size: 20px;
+}
+
+.card-header {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -60px;
+}
+
+.bolder {
+    font-weight: bold;
 }
 
 @media (max-width: 768px) { 
@@ -139,4 +216,81 @@ body {
 
 }
 
-    
+/* bloquequote */
+
+.p-banner {
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    animation: move linear 2000ms infinite;  
+}
+
+@keyframes move {
+  0% {
+    text-shadow:
+    2px -2px 0 #E0439F, 
+    2px -2px 0 #E0439F, 
+    2px -2px 0 #E0439F, 
+    1px -1px 0 #E0439F,
+    -4px 4px 0 hsla(180, 100%, 50%, 1), 
+    -2px 2px 0 hsla(180, 100%, 50%, 1), 
+    -2px 2px 0 hsla(180, 100%, 50%, 1), 
+    -1px 1px 0 hsla(180, 100%, 50%, 1)
+    ;
+  }
+  25% {    
+    text-shadow:      
+    -2px -2px 0 hsla(180, 100%, 50%, 1), 
+    -2px -2px 0 hsla(180, 100%, 50%, 1), 
+    -2px -2px 0 hsla(180, 100%, 50%, 1), 
+    -1px -1px 0 hsla(180, 100%, 50%, 1),
+    2px 2px 0 #E0439F, 
+    2px 2px 0 #E0439F, 
+    2px 2px 0 #E0439F, 
+    1px 1px 0 #E0439F#E0439F      
+    ;
+  }
+  50% {
+    text-shadow:
+    -2px 2px 0 #E0439F, 
+    -2px 2px 0 #E0439F, 
+    -2px 2px 0 #E0439F, 
+    -1px 1px 0 #E0439F,
+    2px -2px 0 hsla(180, 100%, 50%, 1), 
+    2px -2px 0 hsla(180, 100%, 50%, 1), 
+    2px -2px 0 hsla(180, 100%, 50%, 1), 
+    1px -1px 0 hsla(180, 100%, 50%, 1)
+    ;
+  }
+  75% {
+    text-shadow:
+    2px 2px 0 hsla(180, 100%, 50%, 1), 
+    2px 2px 0 hsla(180, 100%, 50%, 1), 
+    2px 2px 0 hsla(180, 100%, 50%, 1), 
+    1px 1px 0 hsla(180, 100%, 50%, 1),
+    -2px -2px 0 #E0439F, 
+    -2px -2px 0 #E0439F, 
+    -2px -2px 0 #E0439F, 
+    -1px -1px 0 #E0439F      
+    ;
+  }
+  100% {
+    text-shadow:
+    2px -2px 0 #E0439F, 
+    2px -2px 0 #E0439F, 
+    2px -2px 0 #E0439F, 
+    1px -1px 0 #E0439F,
+    -2px 2px 0 hsla(180, 100%, 50%, 1), 
+    -2px 2px 0 hsla(180, 100%, 50%, 1), 
+    -2px 2px 0 hsla(180, 100%, 50%, 1), 
+    -1px 1px 0 hsla(180, 100%, 50%, 1)
+    ;
+  }  
+}
+
+/* TIMER */
+.js-timer {
+    font-size: 20px;
+}

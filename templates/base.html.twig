@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <title>{% block title %}ParaCroco{% endblock %}</title>
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/favicon/apple-touch-icon.png')}}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/favicon/favicon-32x32.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/favicon/favicon-16x16.png')}}">
-    <link rel="manifest" href="{{asset('assets/favicon/site.webmanifest')}}">
-
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/12c728ad22.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -17,23 +17,23 @@
 </head>
 
 <body>
-    <nav class="text-center">
+    <nav class="text-center mb-0">
         <a class="nav-link" href="{{path('home')}}"><img src="{{asset('assets/images/logoAure.png')}}" alt="logo"
-                width="70px" height="70px"></a>
+                width="90px" height="90px"></a>
     </nav>
     {% block body %}{% endblock %}
     <div class="mb-5"></div>
-    <nav class="navbar navbar-dark bg-dark fixed-bottom">
+    <nav class="navbar navbar-dark bg-blue fixed-bottom">
         {% if app.user %}
         <a class="nav-link" href="{{path('bet_new')}}"><img src="{{asset('assets/images/logoAure.png')}}" alt="logo"
                 width="37px" height="37px"></a>
-        <a class="nav-link" href="{{path('excuse_new')}}"><i class="fas fa-pen"></i></a>
-        <a class="nav-link" href="{{path('excuse_list')}}"><i class="fas fa-toilet-paper"></i></a>
-        <a class="nav-link" href="{{path('bet_history')}}"><i class="fas fa-robot"></i></i></a>
-        <a class="nav-link" href="{{path('user_show', {'id': app.user.id})}}"><i class="fas fa-toilet"></i></a>
-        <a class="nav-link" href="{{path('app_logout')}}"><i class="fas fa-sign-out-alt"></i></a>
+        <a class="nav-link" href="{{path('excuse_new')}}"><i class="fas fa-pen fa-lg text-darkness"></i></a>
+        <a class="nav-link" href="{{path('excuse_list')}}"><i class="fas fa-toilet-paper fa-lg text-darkness"></i></a>
+        <a class="nav-link" href="{{path('bet_history')}}"><i class="fas fa-robot fa-lg text-darkness"></i></i></a>
+        <a class="nav-link" href="{{path('user_show', {'id': app.user.id})}}"><i class="fas fa-toilet fa-lg text-darkness"></i></a>
+        <a class="nav-link" href="{{path('app_logout')}}"><i class="fas fa-sign-out-alt fa-lg text-darkness"></i></a>
         {% else %}
-        <a class="nav-link" href="{{path('app_login')}}"><i class="fas fa-sign-in-alt"></i></a>
+        <a class="nav-link" href="{{path('app_login')}}"><i class="fas fa-sign-in-alt fa-lg text-darkness"></i></a>
         {% endif %}
     </nav>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

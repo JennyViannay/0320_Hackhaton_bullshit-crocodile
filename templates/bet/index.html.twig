@@ -20,39 +20,30 @@
     {% endif %} #}
     <div class="text-right">
         {% if app.user.canBet == true %}
-        <a href="{{ path('bet_new') }}" class="btn btn-sm btn-green">Paradealer now !</a>
+        <a href="{{ path('bet_new') }}" class="btn btn-sm btn-blue">Paradealer now !</a>
         {% endif %}
-        <a href="{{path('bet_statistic')}}" class="btn btn-sm btn-blue">Stats</a>
     </div>
     {% for bet in bets %}
     {% if bet.isArchived == false %}
-    <div class="card card-body bg-dark my-2">
-        <div class="row">
-            <div class="col-10">
-                <p>{{bet.excuse}}</p>
-                <p class="text-red"><small>Se termine le {{bet.finishAt|date('d-m-Y')}}</small></p>
-                <p class="text-blue-dark"><small>Parié le {{ bet.createdAt ? bet.createdAt|date('d-m-Y') : '' }}</small>
-                </p>
-            </div>
-            <div class="col-2">
-                <p>{{ include('bet/_delete_form.html.twig') }}</p>
-            </div>
+    <div class="card card-body bg-darkness border rounded my-2">
+        <div class="blockquote p-3 text-right bg-blue text-dark bolder rounded">
+            <p class="mb-0">" {{bet.excuse}} "</p>
+            <p><small>- paradealé le {{ bet.createdAt ? bet.createdAt|date('d-m-Y') : '' }}</small></p>
+        </div>
+        <small class="text-red">- se termine le {{ bet.finishAt ? bet.createdAt|date('d-m-Y') : '' }}</small>
+        <div class="text-right">
+            {{ include('bet/_delete_form.html.twig') }}
         </div>
     </div>
     {% else %}
-    <div class="card card-body bg-dark my-2">
-        <div class="row">
-            {% if bet.excuse.id == ofTheDay.excuse.id %}
-                <div class="col-12 text-right">
-                    <small class="text-red">Labélisée Paracrote gagnante</small><img src="{{asset('assets/images/logoAure.png')}}" alt="logo" class="img-fluid" width="50px">
-                </div>
-                <hr>
-            {% endif %}
-            <div class="col-12">
-                <div class="title"></div>
-                <p>{{bet.excuse}}</p>
-                <p class="text-blue-dark"><small>S'est terminé le {{bet.finishAt|date('d-m-Y')}}</small></p>
-            </div>
+    <div class="card card-body bg-blue border rounded my-2">
+        {% if bet.excuse.id == ofTheDay.excuse.id %}
+        <h6 class="text-uppercase"><img src="{{asset('assets/images/logoAure.png')}}" alt="logo" class="img-fluid" width="50px"> Labélisée Paracrote gagnante</h6>
+        <hr>
+        {% endif %}
+        <div class="blockquote p-3 text-right text-dark bolder rounded">
+            <p class="mb-0">" {{bet.excuse}} "</p>
+            <p><small>- terminé le {{bet.finishAt|date('d-m-Y')}}</small></p>
         </div>
     </div>
     {% endif %}
