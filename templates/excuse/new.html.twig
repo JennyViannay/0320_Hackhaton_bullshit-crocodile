@@ -1,9 +1,63 @@
 {% extends 'base.html.twig' %}
 {% block title %}Nouvelle excuse - ParaCroco{% endblock %}
+{% block stylesheets %}
+<style>
+    .album {
+        box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.65);
+        width: 150px;
+        height: 150px;
+        margin-top: 27px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .album .album-art {
+        background: #fff url('https://images.genius.com/037ae56c41cf9e9fd96ee4bdfddf29aa.1000x1000x1.jpg') center / cover no-repeat;
+        width: 150px;
+        height: 150px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .vinyl {
+        animation : spin 2s linear infinite;
+        transition: all 500ms;
+        background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/83141/vinyl.png'), url('https://images.genius.com/037ae56c41cf9e9fd96ee4bdfddf29aa.1000x1000x1.jpg');
+        background-position: center, center;
+        background-size: cover, 40% auto;
+        background-repeat: no-repeat;
+        border-radius: 100%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        width: 125px;
+        height: 125px;
+        position: absolute;
+        left: 100px;
+        top: 10px;
+        z-index: 5;
+        will-change: transform, left;
+    }
+
+    @keyframes spin {
+        from {
+            transform:rotate(0deg);
+        }
+        to {
+            transform:rotate(360deg);
+        }
+    }
+</style>
+{% endblock  %}
 {% block body %}
 <div class="bg-tapis"></div>
-<div class="container after_bgContainer">
+<div class="container after_bgContainer text-center">
     {{ include('excuse/_form.html.twig') }}
+    <div class="text-center">
+        <div class="album">
+            <div class="album-art"></div>
+            <div class="vinyl"></div>
+        </div>
+    </div>
 </div>
 <audio src="{{asset('assets/audio/uskypariscestgotham.mp3')}}" autoplay></audio>
+
 {% endblock %}
