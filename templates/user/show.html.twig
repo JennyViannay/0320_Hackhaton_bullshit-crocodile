@@ -13,6 +13,7 @@
             <p><small class="text-blue bolder">Né.e le : </small>{{user.birthDate|date('d/m/Y')}}</p>
             <p><small class="text-blue">🐊 Paradeals : </small> {{user.bets|length}}</p>
             <p><small class="text-blue">💩 Paracrotes : </small> {{user.excuses|length}}</p>
+            <p><small class="text-blue">🌟 Paradeals gagnants : </small> (coming soon)</p>
             {% if app.user == user %}
             <div class="col-12 text-center">
                 <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-sm btn-blue my-2">Modifier le
