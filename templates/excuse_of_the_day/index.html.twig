@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ExcuseOfTheDay index{% endblock %}
+{% block title %}ADMIN{% endblock %}
 
 {% block body %}
-    <h1>ExcuseOfTheDay index</h1>
+<div class="container">
 
-    <table class="table">
+    <table class="table text-white">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Created_at</th>
-                <th>Is_active</th>
-                <th>actions</th>
+                <th>id</th>
+                <th>date</th>
+                <th>excuse</th>
+                <th>is_active</th>
             </tr>
         </thead>
         <tbody>
@@ -19,11 +19,8 @@
             <tr>
                 <td>{{ excuse_of_the_day.id }}</td>
                 <td>{{ excuse_of_the_day.createdAt ? excuse_of_the_day.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ excuse_of_the_day.excuse}}</td>
                 <td>{{ excuse_of_the_day.isActive ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('excuse_of_the_day_show', {'id': excuse_of_the_day.id}) }}">show</a>
-                    <a href="{{ path('excuse_of_the_day_edit', {'id': excuse_of_the_day.id}) }}">edit</a>
-                </td>
             </tr>
         {% else %}
             <tr>
@@ -32,6 +29,8 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('excuse_of_the_day_new') }}">Create new</a>
+</div>
+<div class="text-center">
+    <a href="{{ path('excuse_of_the_day_new') }}" class="btn btn-blue">New</a>
+</div>
 {% endblock %}
