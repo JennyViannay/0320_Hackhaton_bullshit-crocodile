@@ -1,5 +1,52 @@
 {% extends 'base.html.twig' %}
 {% block title %}Home - ParaCroco{% endblock %}
+{% block stylesheets %}
+<style>
+    .album {
+        box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.65);
+        width: 225px;
+        height: 225px;
+        margin-top: 27px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .album .album-art {
+        background: #fff url('https://media1.giphy.com/media/kV9HM9LbgrKIu2H3LI/giphy.gif') center / cover no-repeat;
+        width: 225px;
+        height: 225px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .vinyl {
+        animation: spin 2s linear infinite;
+        transition: all 500ms;
+        background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/83141/vinyl.png'), url('assets/images/logoAure.png');
+        background-position: center, center;
+        background-size: cover, 40% auto;
+        background-repeat: no-repeat;
+        border-radius: 100%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        left: 120px;
+        top: 10px;
+        will-change: transform, left;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+{% endblock %}
 {% block body %}
 <div class="container">
     {% if ofTheDay is not null %}
@@ -8,11 +55,10 @@
             <h3 class="text-uppercase">Paracrote of the day 💩 </h3>
             <div class="blockquote bg-blue border rounded p-3">
                 <p class="mb-0 p-banner">" {{ofTheDay.excuse}} "</p>
-                <footer class="blockquote-footer text-right text-white">par 
-                    <cite
-                        title="Source Title">
+                <footer class="blockquote-footer text-right text-white">par
+                    <cite title="Source Title">
                         {% if ofTheDay.excuse.author is empty %}
-                            bot_paradeal
+                        bot_paradeal
                         {% else %}
                         {{ofTheDay.excuse.author}}
                         {% endif %}
@@ -27,7 +73,11 @@
             Bravo le(s) bullshiter(s) 👍
         </div>
         <div class="text-center">
-            <img src="https://media2.giphy.com/media/kUEojfKNgSH0gnWyhK/giphy.gif" class="img-fluid" alt="">
+            <div class="album">
+                <div class="album-art"></div>
+                <div class="vinyl"></div>
+            </div>
+            {# <img src="https://media2.giphy.com/media/kUEojfKNgSH0gnWyhK/giphy.gif" class="img-fluid" alt=""> #}
             <audio src="{{asset('assets/audio/winning.mp3')}}" autoplay></audio>
         </div>
     </div>
