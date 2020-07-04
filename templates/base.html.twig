@@ -18,11 +18,39 @@
 
 <body>
     <nav class="text-center mb-0">
+        <button type="button" class="btn text-red" data-toggle="modal" data-target="#credits">&copy;</button>
         <a class="nav-link" href="{{path('home')}}"><img src="{{asset('assets/images/logoAure.png')}}" alt="logo"
                 width="90px" height="90px"></a>
     </nav>
+    <!-- Modal -->
+    <div class="modal fade" id="credits" tabindex="-1" role="dialog" aria-labelledby="creditsLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-darkness">
+                <div class="modal-header">
+                    <h5 class="bolder text-red">@hackathouse's team vous remercie !</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Logo : "ParaCroco" <cite title="Source Title" class="text-red">&copy;Krilline</cite>
+                    <br>
+                    Model pochette : <cite title="Source Title" class="text-red">&copy;Krilline</cite>
+                    <br>
+                    Hymne : Paris c'est Gotham <cite title="Source Title" class="text-red">&copy;Usky</cite>
+                    <br>
+                    Gif pipo : <cite title="Source Title" class="text-red">&copy;Lizzo</cite>
+                    <br>
+                    Air flûte mission impossible : <cite title="Source Title" class="text-red">&copy;Anonymous</cite>
+                    <br>
+                </div>
+                <div class="modal-footer">
+                    - Jenny -
+                </div>
+            </div>
+        </div>
+    </div>
     {% block body %}{% endblock %}
-    <div class="mb-5"></div>
     <nav class="navbar navbar-dark bg-blue fixed-bottom">
         {% if app.user %}
         <a class="nav-link" href="{{path('bet_new')}}"><img src="{{asset('assets/images/logoAure.png')}}" alt="logo"
@@ -30,7 +58,8 @@
         <a class="nav-link" href="{{path('excuse_new')}}"><i class="fas fa-pen fa-lg text-darkness"></i></a>
         <a class="nav-link" href="{{path('excuse_list')}}"><i class="fas fa-toilet-paper fa-lg text-darkness"></i></a>
         <a class="nav-link" href="{{path('bet_history')}}"><i class="fas fa-robot fa-lg text-darkness"></i></i></a>
-        <a class="nav-link" href="{{path('user_show', {'id': app.user.id})}}"><i class="fas fa-toilet fa-lg text-darkness"></i></a>
+        <a class="nav-link" href="{{path('user_show', {'id': app.user.id})}}"><i
+                class="fas fa-toilet fa-lg text-darkness"></i></a>
         <a class="nav-link" href="{{path('app_logout')}}"><i class="fas fa-sign-out-alt fa-lg text-darkness"></i></a>
         {% else %}
         <a class="nav-link" href="{{path('app_login')}}"><i class="fas fa-sign-in-alt fa-lg text-darkness"></i></a>
