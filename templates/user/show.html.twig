@@ -2,29 +2,46 @@
 {% block title %}Profil - ParaCroco{% endblock %}
 {% block body %}
 <div class="container">
-    <div class="bg-darkness border">
-        <div class="text-center m-2">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-2 text-center">
             <img src="{{user.avatar}}" class="avatar" alt="avatar">
         </div>
-        <div class="card-body mt-3">
-            <h5 class="card-title"><span class="text-blue">@{{user.username}}</span></h5>
-            <p><small class="text-red">{{user.email}}</small></p>
-            <p><small class="text-blue bolder">Bio : </small><br>{{user.comment}}</p>
-            <p><small class="text-blue bolder">Né.e le : </small>{{user.birthDate|date('d/m/Y')}}</p>
-            <p><small class="text-blue">🐊 Paradeals : </small> {{user.bets|length}}</p>
-            <p><small class="text-blue">💩 Paracrotes : </small> {{user.excuses|length}}</p>
-            <p><small class="text-blue">🌟 Paradeals gagnants : </small> (coming soon)</p>
+        <div class="col-2"></div>
+        <div class="col-6 text-right">
             {% if app.user == user %}
-            <div class="col-12 text-center">
-                <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-sm btn-blue my-2">Modifier le
-                    profil</a>
-                {{ include('user/_delete_form.html.twig') }}
-            </div>
+                <div class="text-right my-3">
+                <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-blue btn-sm">
+                    <i class="fas fa-cog"></i>
+                    Modifier
+                </a>
+                </div>
             {% endif %}
+            <div class="text-left">
+                <a href="#" class=""><span class="text-blue">@{{user.username}}</span></a> - 
+                <a href="#" class=""><small class="text-red">{{user.email}}</small></a>
+            </div>
+            <div class="text-left">
+                <p><small class="text-blue bolder">Né.e le : </small>{{user.birthDate|date('d/m/Y')}}</p>
+            </div>
         </div>
-        <div class="col-12 text-center mt-3">
-            <img src="https://media1.tenor.com/images/74739e0d1fc1d77f7115f907c8244b02/tenor.gif?itemid=3537100" alt="croco" class="img-fluid" width="150px">
-        </div>
+        <div class="col-1"></div>
+    </div>
+    <hr class="bg-red">
+    <div class="card-body mt-3 text-center border mb-5">
+        <p><small class="text-blue bolder">Bio : </small><br>{{user.comment}}</p>
+        <p><small class="text-blue">🐊 Paradeals : </small> {{user.bets|length}}</p>
+        <p><small class="text-blue">💩 Paracrotes : </small> {{user.excuses|length}}</p>
+        <p><small class="text-blue">🌟 Paradeals gagnants : </small> (coming soon)</p>
+    </div>
+    <div class="text-center">
+        {% if app.user == user %}
+        {{ include('user/_delete_form.html.twig') }}
+        {% endif %}
+    </div>
+    <div class="col-12 text-center mt-3">
+        <img src="https://media1.tenor.com/images/74739e0d1fc1d77f7115f907c8244b02/tenor.gif?itemid=3537100" alt="croco"
+            class="img-fluid" width="150px">
     </div>
 </div>
 <div style="height: 100px"></div>
