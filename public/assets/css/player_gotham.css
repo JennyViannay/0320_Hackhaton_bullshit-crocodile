@@ -26,7 +26,7 @@
         transition: all 500ms;
         background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/83141/vinyl.png'), url('https://i.postimg.cc/yxZm0Y8F/aurethug.jpg');
         background-position: center, center;
-        background-size: cover, 40% auto;
+        background-size: cover, 50% auto;
         background-repeat: no-repeat;
         border-radius: 100%;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
@@ -75,7 +75,7 @@
         transition: all 500ms;
         background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/83141/vinyl.png'), url('https://i.postimg.cc/yxZm0Y8F/aurethug.jpg');
         background-position: center, center;
-        background-size: cover, 40% auto;
+        background-size: cover, 60% auto;
         background-repeat: no-repeat;
         border-radius: 100%;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
@@ -124,7 +124,7 @@
         transition: all 500ms;
         background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/83141/vinyl.png'), url('https://i.postimg.cc/yxZm0Y8F/aurethug.jpg');
         background-position: center, center;
-        background-size: cover, 40% auto;
+        background-size: cover, 50% auto;
         background-repeat: no-repeat;
         border-radius: 100%;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
