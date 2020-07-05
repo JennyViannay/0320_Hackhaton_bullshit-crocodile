@@ -28,9 +28,9 @@
     <div class="card card-body bg-darkness border rounded my-2">
         <div class="blockquote p-3 text-right bg-blue text-dark bolder rounded">
             <p class="mb-0">" {{bet.excuse}} "</p>
-            <p><small>- dealé le {{ bet.createdAt ? bet.createdAt|date('d-m-Y') : '' }}</small></p>
+            <p><small>- dealé le {{ bet.createdAt ? bet.createdAt|format_datetime() : '' }}</small></p>
         </div>
-        <small class="text-red">- se termine le {{ bet.finishAt ? bet.finishAt|date('d-m-Y') : '' }}</small>
+        <small class="text-red">- se termine le {{ bet.finishAt ? bet.finishAt|format_datetime() : '' }}</small>
         <div class="text-right">
             {{ include('bet/_delete_form.html.twig') }}
         </div>
@@ -43,7 +43,7 @@
         {% endif %}
         <div class="blockquote p-3 text-right text-dark bolder rounded">
             <p class="mb-0">" {{bet.excuse}} "</p>
-            <p><small>- terminé le {{bet.finishAt|date('d-m-Y')}}</small></p>
+            <p><small>- terminé le {{bet.finishAt|format_datetime() }}</small></p>
         </div>
     </div>
     {% endif %}

@@ -60,7 +60,7 @@
         <div class="blockquote p-3 text-right bg-blue text-dark bolder p-3 rounded">
             <p class="mb-0">" {{item.text}} "</p>
             <footer class="blockquote-footer text-grey mt-4">
-                le <cite title="date">{{ item.createdAt|format_datetime('short') }}</cite>
+                le <cite title="date">{{ item.createdAt|format_datetime()  }}</cite>
             </footer>
         </div>
     </div>
@@ -80,7 +80,7 @@
         <div class="blockquote p-3 text-right bg-green text-dark bolder p-3 rounded">
             <p class="mb-0">" {{item.excuse}} "</p>
             <footer class="blockquote-footer text-grey mt-4">
-                le <cite title="date">{{ item.createdAt|format_datetime('short') }}</cite>
+                le <cite title="date">{{ item.createdAt|format_datetime() }}</cite>
             </footer>
         </div>
     </div>

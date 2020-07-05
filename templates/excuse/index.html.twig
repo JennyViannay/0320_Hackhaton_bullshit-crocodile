@@ -21,7 +21,7 @@
         <div class="blockquote p-3 text-right bg-blue text-dark bolder p-3 rounded">
             <p class="mb-0">" {{excuse.text}} "</p>
             <footer class="blockquote-footer text-grey mt-4">
-                le <cite title="date">{{ excuse.createdAt|format_datetime('short') }}</cite>
+                le <cite title="date">{{ excuse.createdAt|format_datetime() }}</cite>
             </footer>
         </div>
         <a href="{{ path('excuse_like', {'id' : excuse.id }) }}" class="btn btn-sm btn-red bolder js-like">
