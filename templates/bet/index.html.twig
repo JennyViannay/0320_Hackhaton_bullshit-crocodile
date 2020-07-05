@@ -30,7 +30,7 @@
             <p class="mb-0">" {{bet.excuse}} "</p>
             <p><small>- dealé le {{ bet.createdAt ? bet.createdAt|date('d-m-Y') : '' }}</small></p>
         </div>
-        <small class="text-red">- se termine le {{ bet.finishAt ? bet.createdAt|date('d-m-Y') : '' }}</small>
+        <small class="text-red">- se termine le {{ bet.finishAt ? bet.finishAt|date('d-m-Y') : '' }}</small>
         <div class="text-right">
             {{ include('bet/_delete_form.html.twig') }}
         </div>
