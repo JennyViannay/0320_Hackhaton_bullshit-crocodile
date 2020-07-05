@@ -1,51 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}Home - Croco{% endblock %}
 {% block stylesheets %}
-<style>
-    .album {
-        box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.65);
-        width: 225px;
-        height: 225px;
-        margin-top: 27px;
-        position: relative;
-        z-index: 10;
-    }
-
-    .album .album-art {
-        background: #fff url('https://media1.giphy.com/media/kV9HM9LbgrKIu2H3LI/giphy.gif') center / cover no-repeat;
-        width: 225px;
-        height: 225px;
-        position: relative;
-        z-index: 10;
-    }
-
-    .vinyl {
-        animation: spin 2s linear infinite;
-        transition: all 500ms;
-        background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/83141/vinyl.png'), url('assets/images/logoAure.png');
-        background-position: center, center;
-        background-size: cover, 40% auto;
-        background-repeat: no-repeat;
-        border-radius: 100%;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-        width: 200px;
-        height: 200px;
-        position: absolute;
-        left: 120px;
-        top: 10px;
-        will-change: transform, left;
-    }
-
-    @keyframes spin {
-        from {
-            transform: rotate(0deg);
-        }
-
-        to {
-            transform: rotate(360deg);
-        }
-    }
-</style>
+<link rel="stylesheet" href="{{asset('assets/css/player_home.css')}}">
 {% endblock %}
 {% block body %}
 <div class="container">
@@ -73,21 +29,18 @@
             Bravo le(s) bullshiter(s) 👍
         </div>
         <div class="row">
-            <div class="col-12 text-center">
+            <div class="col-2"></div>
+            <div class="col-8 text-center">
                 <div class="album">
                     <div class="album-art"></div>
                     <div class="vinyl"></div>
                 </div>
             </div>
-            <div class="col-12 mt-2">
+            <div class="col-2"></div>
+            <div class="col-12 mt-2 text-center">
                 <audio src="{{asset('assets/audio/winning.mp3')}}" autoplay controls></audio>
             </div>
         </div>
-
-
-
-        {# <img src="https://media2.giphy.com/media/kUEojfKNgSH0gnWyhK/giphy.gif" class="img-fluid" alt=""> #}
-
     </div>
     {% endif %}
     {% for item in data %}
