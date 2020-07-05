@@ -72,14 +72,22 @@
             <br>
             Bravo le(s) bullshiter(s) 👍
         </div>
-        <div class="text-center">
-            <div class="album">
-                <div class="album-art"></div>
-                <div class="vinyl"></div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="album">
+                    <div class="album-art"></div>
+                    <div class="vinyl"></div>
+                </div>
             </div>
-            {# <img src="https://media2.giphy.com/media/kUEojfKNgSH0gnWyhK/giphy.gif" class="img-fluid" alt=""> #}
-            <audio src="{{asset('assets/audio/winning.mp3')}}" autoplay></audio>
+            <div class="col-12 mt-2">
+                <audio src="{{asset('assets/audio/winning.mp3')}}" autoplay controls></audio>
+            </div>
         </div>
+
+
+
+        {# <img src="https://media2.giphy.com/media/kUEojfKNgSH0gnWyhK/giphy.gif" class="img-fluid" alt=""> #}
+
     </div>
     {% endif %}
     {% for item in data %}

@@ -2,49 +2,154 @@
 {% block title %}Bullshiter - CrocoDeal{% endblock %}
 {% block stylesheets %}
 <style>
-    .album {
-        box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.65);
-        width: 150px;
-        height: 150px;
-        margin-top: 27px;
-        position: relative;
-        z-index: 10;
-    }
-
-    .album .album-art {
-        background: #fff url('https://i.postimg.cc/yxZm0Y8F/aurethug.jpg') center / cover no-repeat;
-        width: 150px;
-        height: 150px;
-        position: relative;
-        z-index: 10;
-        filter: grayscale(100%);
-    }
-
-    .vinyl {
-        animation : spin 2s linear infinite;
-        transition: all 500ms;
-        background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/83141/vinyl.png'), url('https://i.postimg.cc/yxZm0Y8F/aurethug.jpg');
-        background-position: center, center;
-        background-size: cover, 40% auto;
-        background-repeat: no-repeat;
-        border-radius: 100%;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-        width: 125px;
-        height: 125px;
-        position: absolute;
-        left: 100px;
-        top: 10px;
-        z-index: 5;
-        will-change: transform, left;
-        filter: grayscale(100%);
-    }
-
-    @keyframes spin {
-        from {
-            transform:rotate(0deg);
+    @media (max-width: 768px) {
+        audio {
+            width: 250px;
         }
-        to {
-            transform:rotate(360deg);
+
+        .album {
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.65);
+            width: 150px;
+            height: 150px;
+            margin-top: 27px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .album .album-art {
+            background: #fff url('https://i.postimg.cc/yxZm0Y8F/aurethug.jpg') center / cover no-repeat;
+            width: 150px;
+            height: 150px;
+            position: relative;
+            z-index: 10;
+            filter: grayscale(100%);
+        }
+
+        .vinyl {
+            animation: spin 2s linear infinite;
+            transition: all 500ms;
+            background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/83141/vinyl.png'), url('https://i.postimg.cc/yxZm0Y8F/aurethug.jpg');
+            background-position: center, center;
+            background-size: cover, 40% auto;
+            background-repeat: no-repeat;
+            border-radius: 100%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            width: 125px;
+            height: 125px;
+            position: absolute;
+            left: 85px;
+            top: 10px;
+            z-index: 5;
+            will-change: transform, left;
+            filter: grayscale(100%);
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    }
+
+    @media (min-width: 992px) {
+        .album {
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.65);
+            width: 400px;
+            height: 400px;
+            margin-top: 27px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .album .album-art {
+            background: #fff url('https://i.postimg.cc/yxZm0Y8F/aurethug.jpg') center / cover no-repeat;
+            width: 400px;
+            height: 400px;
+            position: relative;
+            z-index: 10;
+            filter: grayscale(100%);
+        }
+
+        .vinyl {
+            animation: spin 2s linear infinite;
+            transition: all 500ms;
+            background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/83141/vinyl.png'), url('https://i.postimg.cc/yxZm0Y8F/aurethug.jpg');
+            background-position: center, center;
+            background-size: cover, 40% auto;
+            background-repeat: no-repeat;
+            border-radius: 100%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            width: 380px;
+            height: 380px;
+            position: absolute;
+            left: 300px;
+            top: 10px;
+            z-index: 5;
+            will-change: transform, left;
+            filter: grayscale(100%);
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .album {
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.65);
+            width: 400px;
+            height: 400px;
+            margin-top: 27px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .album .album-art {
+            background: #fff url('https://i.postimg.cc/yxZm0Y8F/aurethug.jpg') center / cover no-repeat;
+            width: 400px;
+            height: 400px;
+            position: relative;
+            z-index: 10;
+            filter: grayscale(100%);
+        }
+
+        .vinyl {
+            animation: spin 2s linear infinite;
+            transition: all 500ms;
+            background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/83141/vinyl.png'), url('https://i.postimg.cc/yxZm0Y8F/aurethug.jpg');
+            background-position: center, center;
+            background-size: cover, 40% auto;
+            background-repeat: no-repeat;
+            border-radius: 100%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            width: 380px;
+            height: 380px;
+            position: absolute;
+            left: 300px;
+            top: 10px;
+            z-index: 5;
+            will-change: transform, left;
+            filter: grayscale(100%);
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
     }
 </style>
@@ -53,13 +158,18 @@
 <div class="bg-tapis"></div>
 <div class="container after_bgContainer text-center">
     {{ include('excuse/_form.html.twig') }}
-    <div class="text-center">
-        <div class="album">
-            <div class="album-art"></div>
-            <div class="vinyl"></div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 text-center">
+            <div class="album">
+                <div class="album-art"></div>
+                <div class="vinyl"></div>
+            </div>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-12 mt-2">
+            <audio src="{{asset('assets/audio/uskypariscestgotham.mp3')}}" autoplay controls></audio>
         </div>
     </div>
 </div>
-<audio src="{{asset('assets/audio/uskypariscestgotham.mp3')}}" autoplay></audio>
-
 {% endblock %}
